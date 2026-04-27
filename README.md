@@ -16,7 +16,6 @@ This project now includes a secure admin portal flow with:
 	- `NEXT_PUBLIC_SUPABASE_URL`
 	- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 	- `SUPABASE_SERVICE_ROLE_KEY`
-3. Run SQL in `supabase/admin_auth.sql` in the Supabase SQL editor.
 
 > Keep `SUPABASE_SERVICE_ROLE_KEY` server-only. Never expose it in client code.
 
