@@ -47,11 +47,11 @@ export default function AdminLoginPage() {
       <section className={styles.shell}>
         <aside className={styles.brandPanel}>
           <div className={styles.brandBlock}>
-            <span className={styles.brandMark} aria-hidden="true" />
-            <div>
-              <p className={styles.brandName}>MentorBridge</p>
-              <p className={styles.brandTag}>Admin Command Center</p>
-            </div>
+            <img
+              className={styles.logoSlot}
+              src="/admin-logo.png"
+              alt="MentorBridge Admin Logo"
+            />
           </div>
         </aside>
 
