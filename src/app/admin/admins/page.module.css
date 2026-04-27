@@ -1,0 +1,131 @@
+.page {
+  display: grid;
+  gap: 24px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 20px;
+}
+
+.heroCopy,
+.heroPanel {
+  border-radius: var(--mb-radius-lg);
+  box-shadow: var(--mb-shadow);
+  overflow: hidden;
+}
+
+.heroCopy {
+  padding: 32px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.14), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(251, 146, 60, 0.12), transparent 45%),
+    var(--mb-primary);
+    border: 1px solid var(--mb-border-strong);
+}
+
+.badge,
+.panelLabel,
+.sideBadge {
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 146, 60, 0.6);
+  color: #fed7aa;
+  background: rgba(124, 45, 18, 0.25);
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.heroCopy h1 {
+  margin: 18px 0 10px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.heroText {
+  margin: 0;
+  max-width: 55ch;
+  color: #bfdbfe;
+  line-height: 1.7;
+}
+
+.heroPanel {
+  background:
+    linear-gradient(180deg, rgba(0, 55, 65, 0.92), rgba(0, 55, 65, 0.84)),
+    radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.16), transparent 42%),
+    radial-gradient(circle at 85% 80%, rgba(251, 146, 60, 0.18), transparent 38%);
+  border: 1px solid rgba(186, 230, 253, 0.2);
+}
+
+.heroPanelInner {
+  height: 100%;
+  min-height: 220px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  color: #e2e8f0;
+}
+
+.heroPanelInner h2 {
+  margin: 14px 0 8px;
+  font-size: 32px;
+  font-weight: 500;
+  color: #f8fafc;
+}
+
+.heroPanelInner p {
+  margin: 0;
+  color: #bfdbfe;
+  line-height: 1.6;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.sideCard {
+  background: var(--mb-surface);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md);
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.sideCard h3 {
+  margin: 14px 0 12px;
+  color: var(--mb-text);
+  font-size: 20px;
+}
+
+.sideCard ul {
+  list-style: disc;
+  padding-left: 20px;
+  color: var(--mb-text-muted);
+  display: grid;
+  gap: 8px;
+}
+
+@media (max-width: 960px) {
+  .hero,
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroCopy,
+  .heroPanelInner,
+  .sideCard {
+    padding: 18px;
+  }
+}

@@ -4,7 +4,10 @@ import { useState } from 'react'
 
 import styles from './page.module.css'
 
-export default function CreateAdminForm() {
+export default function CreateAdminForm({
+  title = 'Create Another Admin',
+  description = 'Only currently authenticated admins can perform this action.',
+}) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
@@ -56,8 +59,8 @@ export default function CreateAdminForm() {
 
   return (
     <section className={styles.subCard}>
-      <h2>Create Another Admin</h2>
-      <p className={styles.subText}>Only currently authenticated admins can perform this action.</p>
+      <h2>{title}</h2>
+      <p className={styles.subText}>{description}</p>
 
       <form className={styles.form} onSubmit={onSubmit}>
         <label htmlFor="new-admin-email">Admin email</label>

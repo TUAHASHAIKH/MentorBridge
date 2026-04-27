@@ -1,0 +1,112 @@
+.sidebar {
+  width: 300px;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  color: #e2e8f0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.14), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(251, 146, 60, 0.12), transparent 45%),
+    var(--mb-primary);
+  border-right: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.03) inset;
+}
+
+.brand {
+  padding: 28px 20px 20px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(186, 230, 253, 0.15);
+}
+
+.logoWrap {
+  width: min(220px, 100%);
+  display: grid;
+  place-items: center;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.brandText {
+  margin: 0;
+  color: #bfdbfe;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 22px 14px 24px;
+}
+
+.navSection {
+  padding: 0 6px;
+}
+
+.sectionTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(191, 219, 254, 0.82);
+  margin: 0 0 8px 0;
+  padding: 0 8px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menuItem {
+  display: block;
+  padding: 11px 12px;
+  border-radius: 10px;
+  color: #dbeafe;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.menuItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-left-color: rgba(251, 146, 60, 0.7);
+}
+
+.menuItem.active {
+  background: linear-gradient(90deg, rgba(251, 146, 60, 0.22), rgba(251, 146, 60, 0.08));
+  color: #ffffff;
+  border-left-color: var(--mb-accent-2);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .sectionTitle {
+    font-size: 10px;
+  }
+
+  .menuItem {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+}

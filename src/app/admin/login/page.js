@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
@@ -47,10 +48,13 @@ export default function AdminLoginPage() {
       <section className={styles.shell}>
         <aside className={styles.brandPanel}>
           <div className={styles.brandBlock}>
-            <img
+            <Image
               className={styles.logoSlot}
               src="/admin-logo.png"
               alt="MentorBridge Admin Logo"
+              width={420}
+              height={324}
+              priority
             />
           </div>
         </aside>
