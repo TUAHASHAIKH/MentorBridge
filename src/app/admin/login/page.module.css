@@ -1,72 +1,152 @@
 .page {
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at top right, #f0f4ff 0%, #f8fafc 40%, #eef2ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 24px;
+  background:
+    radial-gradient(1200px 600px at -10% -20%, rgba(56, 189, 248, 0.15), transparent 60%),
+    radial-gradient(1000px 700px at 110% 120%, rgba(250, 204, 21, 0.12), transparent 60%),
+    #f4f7ff;
 }
 
-.card {
+.shell {
   width: 100%;
-  max-width: 460px;
-  background: #ffffff;
-  border: 1px solid #dbe2f0;
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(17, 24, 39, 0.08);
-  padding: 28px;
+  max-width: 980px;
+  min-height: 520px;
   display: grid;
-  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.22);
+  background: #003741;
+}
+
+.brandPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  border-right: 1px solid rgba(148, 163, 184, 0.45);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.14), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(251, 146, 60, 0.12), transparent 45%),
+    #003741;
+}
+
+.brandBlock {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brandMark {
+  width: 18px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fb923c 0%, #facc15 32%, #22d3ee 100%);
+  transform: rotate(18deg);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+}
+
+.brandName {
+  font-size: 30px;
+  letter-spacing: 0.2px;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.brandTag {
+  margin-top: 4px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(186, 230, 253, 0.74);
+}
+
+.formPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 42px 52px;
+  background: #003741;
+  color: #e2e8f0;
 }
 
 .badge {
   width: fit-content;
-  border: 1px solid #fdba74;
-  color: #92400e;
-  background: #fff7ed;
+  border: 1px solid rgba(251, 146, 60, 0.6);
+  color: #fed7aa;
+  background: rgba(124, 45, 18, 0.25);
   border-radius: 999px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   font-size: 12px;
   font-weight: 600;
 }
 
+.formPanel h1 {
+  margin-top: 18px;
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+}
+
 .subtext {
-  color: #4b5563;
+  margin-top: 8px;
+  color: #bfdbfe;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 11px;
 }
 
 .form {
-  margin-top: 6px;
+  margin-top: 24px;
   display: grid;
-  gap: 10px;
+  gap: 11px;
 }
 
 .form label {
-  font-size: 14px;
-  color: #374151;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #cbd5e1;
 }
 
 .form input {
-  height: 44px;
-  border-radius: 10px;
-  border: 1px solid #cbd5e1;
+  height: 42px;
+  border-radius: 6px;
+  border: 1px solid rgba(186, 230, 253, 0.6);
+  background: rgba(248, 250, 252, 0.98);
+  color: #0f172a;
   padding: 0 12px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .form input:focus {
-  outline: 2px solid #93c5fd;
+  outline: 2px solid rgba(34, 211, 238, 0.65);
   outline-offset: 1px;
-  border-color: #60a5fa;
+  border-color: rgba(56, 189, 248, 0.9);
 }
 
 .form button {
-  margin-top: 4px;
-  height: 44px;
+  margin-top: 10px;
+  height: 38px;
   border: 0;
-  border-radius: 10px;
-  background: #0f172a;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #fb923c 0%, #f97316 100%);
   color: #ffffff;
-  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
   cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.form button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
 }
 
 .form button:disabled {
@@ -75,10 +155,37 @@
 }
 
 .error {
-  color: #b91c1c;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 10px;
+  color: #fee2e2;
+  background: rgba(153, 27, 27, 0.48);
+  border: 1px solid rgba(252, 165, 165, 0.55);
+  border-radius: 8px;
   padding: 10px;
   font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    max-width: 520px;
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .brandPanel {
+    border-right: 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.45);
+    padding: 30px 24px;
+    justify-content: flex-start;
+  }
+
+  .brandName {
+    font-size: 26px;
+  }
+
+  .formPanel {
+    padding: 28px 24px 30px;
+  }
+
+  .formPanel h1 {
+    font-size: 36px;
+  }
 }

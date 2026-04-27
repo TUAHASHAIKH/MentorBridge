@@ -44,38 +44,52 @@ export default function AdminLoginPage() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.card}>
-        <p className={styles.badge}>Admin Only</p>
-        <h1>MentorBridge Admin Portal</h1>
-        <p className={styles.subtext}>Use your seeded admin account to continue.</p>
+      <section className={styles.shell}>
+        <aside className={styles.brandPanel}>
+          <div className={styles.brandBlock}>
+            <span className={styles.brandMark} aria-hidden="true" />
+            <div>
+              <p className={styles.brandName}>MentorBridge</p>
+              <p className={styles.brandTag}>Admin Command Center</p>
+            </div>
+          </div>
+        </aside>
 
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <label htmlFor="admin-email">Admin Email</label>
-          <input
-            id="admin-email"
-            type="email"
-            autoComplete="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-          />
+        <section className={styles.formPanel}>
+          <p className={styles.badge}>Admin Only</p>
+          <h1>Welcome</h1>
+          <p className={styles.subtext}>Please log in to admin dashboard.</p>
 
-          <label htmlFor="admin-password">Password</label>
-          <input
-            id="admin-password"
-            type="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-          />
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <label htmlFor="admin-email">Username</label>
+            <input
+              id="admin-email"
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="admin@mentorbridge.pk"
+              required
+            />
 
-          {error ? <p className={styles.error}>{error}</p> : null}
+            <label htmlFor="admin-password">Password</label>
+            <input
+              id="admin-password"
+              type="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Enter password"
+              required
+            />
 
-          <button type="submit" disabled={loading}>
-            {loading ? 'Signing in...' : 'Sign in as Admin'}
-          </button>
-        </form>
+            {error ? <p className={styles.error}>{error}</p> : null}
+
+            <button type="submit" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+        </section>
       </section>
     </main>
   )
