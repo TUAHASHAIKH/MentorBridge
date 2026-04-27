@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
               autoComplete="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="admin@mentorbridge.pk"
+              placeholder="admin@example.com"
               required
             />
 
