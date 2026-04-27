@@ -7,6 +7,7 @@ import {
   deleteAdminSessionByToken,
   validateAdminSession,
 } from '@/lib/admin-session'
+import CreateAdminForm from './create-admin-form'
 
 import styles from './page.module.css'
 
@@ -46,6 +47,8 @@ export default async function AdminDashboardPage() {
           You are signed in as {session.user.email}. This route is isolated from student and mentor
           auth flows.
         </p>
+
+        <CreateAdminForm />
 
         <div className={styles.actions}>
           <Link href="/" className={styles.link}>
