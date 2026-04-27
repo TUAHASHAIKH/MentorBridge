@@ -1,0 +1,84 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at top right, #f0f4ff 0%, #f8fafc 40%, #eef2ff 100%);
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 460px;
+  background: #ffffff;
+  border: 1px solid #dbe2f0;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(17, 24, 39, 0.08);
+  padding: 28px;
+  display: grid;
+  gap: 12px;
+}
+
+.badge {
+  width: fit-content;
+  border: 1px solid #fdba74;
+  color: #92400e;
+  background: #fff7ed;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.subtext {
+  color: #4b5563;
+}
+
+.form {
+  margin-top: 6px;
+  display: grid;
+  gap: 10px;
+}
+
+.form label {
+  font-size: 14px;
+  color: #374151;
+}
+
+.form input {
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 0 12px;
+  font-size: 15px;
+}
+
+.form input:focus {
+  outline: 2px solid #93c5fd;
+  outline-offset: 1px;
+  border-color: #60a5fa;
+}
+
+.form button {
+  margin-top: 4px;
+  height: 44px;
+  border: 0;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+}

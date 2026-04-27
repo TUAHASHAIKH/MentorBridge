@@ -1,0 +1,60 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(140deg, #ecfeff 0%, #eef2ff 45%, #f8fafc 100%);
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 720px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #dbe5f0;
+  padding: 30px;
+  display: grid;
+  gap: 14px;
+  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.08);
+}
+
+.badge {
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid #67e8f9;
+  color: #155e75;
+  background: #ecfeff;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.link,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 10px;
+  padding: 0 16px;
+  font-weight: 600;
+}
+
+.link {
+  border: 1px solid #cbd5e1;
+  color: #1f2937;
+}
+
+.button {
+  border: 0;
+  background: #0f172a;
+  color: #ffffff;
+  cursor: pointer;
+}

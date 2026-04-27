@@ -1,4 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is the MentorBridge web application built with Next.js App Router and Supabase.
+
+## Admin Portal Auth (Implemented)
+
+This project now includes a secure admin portal flow with:
+
+- Separate route at `/admin/login`
+- Admin-only access check against `profiles.role = 'admin'`
+- Lockout after 5 consecutive failed login attempts
+- Session expiration after 8 hours of inactivity
+
+### Required setup
+
+1. Copy `.env.local.example` into `.env.local` (if not already done).
+2. Fill:
+	- `NEXT_PUBLIC_SUPABASE_URL`
+	- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+	- `SUPABASE_SERVICE_ROLE_KEY`
+3. Run SQL in `supabase/admin_auth.sql` in the Supabase SQL editor.
+
+> Keep `SUPABASE_SERVICE_ROLE_KEY` server-only. Never expose it in client code.
 
 ## Getting Started
 
@@ -16,7 +36,13 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Key routes:
+
+- `/` - landing page
+- `/admin/login` - admin login portal
+- `/admin` - protected admin dashboard
+
+You can start editing pages in `src/app`. The page auto-updates as you edit files.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
