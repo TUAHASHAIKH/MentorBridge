@@ -19,6 +19,19 @@ This project now includes a secure admin portal flow with:
 
 > Keep `SUPABASE_SERVICE_ROLE_KEY` server-only. Never expose it in client code.
 
+### Seed first admin account
+
+Run the terminal command below from the project root:
+
+```bash
+npm run seed:admin -- --email admin@mentorbridge.pk --password "YourStrongPassword123!" --name "Platform Admin"
+```
+
+Optional flags:
+
+- `--reset-password`: Resets password if the user already exists.
+- `--help`: Shows usage information.
+
 ## Getting Started
 
 First, run the development server:
