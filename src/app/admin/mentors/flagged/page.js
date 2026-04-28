@@ -11,6 +11,24 @@ export default async function FlaggedMentorsPage() {
 
   return (
     <div className={styles.container}>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.badge}>Quality Control</p>
+          <h1>Flagged Mentors</h1>
+          <p className={styles.heroText}>
+            Review and take action on mentors flagged for quality or conduct issues.
+          </p>
+        </div>
+
+        <div className={styles.heroPanel}>
+          <div className={styles.heroPanelInner}>
+            <p className={styles.panelLabel}>Risk Management</p>
+            <h2>Maintain platform integrity</h2>
+            <p>Monitor flagged mentors and take appropriate action to protect our community.</p>
+          </div>
+        </div>
+      </section>
+
       <div className={styles.header}>
         <h1>Flagged Mentors</h1>
         <p>Review and manage mentors flagged for quality issues</p>

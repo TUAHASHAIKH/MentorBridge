@@ -11,6 +11,24 @@ export default async function SifarishPage() {
 
   return (
     <div className={styles.container}>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.badge}>Trust & Verification</p>
+          <h1>Sifarish Vouches</h1>
+          <p className={styles.heroText}>
+            Verify vouch integrity and maintain the trust system of the platform.
+          </p>
+        </div>
+
+        <div className={styles.heroPanel}>
+          <div className={styles.heroPanelInner}>
+            <p className={styles.panelLabel}>Community Trust</p>
+            <h2>Protect the vouch system</h2>
+            <p>Verify authentic vouches and detect fraudulent or suspicious activities.</p>
+          </div>
+        </div>
+      </section>
+
       <div className={styles.header}>
         <h1>Sifarish Vouches</h1>
         <p>Verify vouch integrity and detect fraudulent activities</p>

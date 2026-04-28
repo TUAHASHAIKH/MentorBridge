@@ -11,8 +11,26 @@ export default async function MentorApplicationsPage() {
 
   return (
     <div className={styles.container}>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.badge}>Mentor Review</p>
+          <h1>Mentor Applications</h1>
+          <p className={styles.heroText}>
+            Review and verify mentor qualifications before approving them to the platform.
+          </p>
+        </div>
+
+        <div className={styles.heroPanel}>
+          <div className={styles.heroPanelInner}>
+            <p className={styles.panelLabel}>Quality Assurance</p>
+            <h2>Verify before approving</h2>
+            <p>Thorough verification ensures only qualified mentors join our community.</p>
+          </div>
+        </div>
+      </section>
+
       <div className={styles.header}>
-        <h1>Mentor Applications</h1>
+        <h1>Applications</h1>
         <p>Review and approve pending mentor applications</p>
       </div>
 

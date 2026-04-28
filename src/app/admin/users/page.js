@@ -11,6 +11,24 @@ export default async function UsersPage() {
 
   return (
     <div className={styles.container}>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.badge}>User Control</p>
+          <h1>User Management</h1>
+          <p className={styles.heroText}>
+            Manage user accounts, suspensions, and access control across the platform.
+          </p>
+        </div>
+
+        <div className={styles.heroPanel}>
+          <div className={styles.heroPanelInner}>
+            <p className={styles.panelLabel}>Account Security</p>
+            <h2>Secure your platform</h2>
+            <p>Maintain user security and compliance with account controls and monitoring.</p>
+          </div>
+        </div>
+      </section>
+
       <div className={styles.header}>
         <h1>User Management</h1>
         <p>Manage and monitor all users on the platform</p>

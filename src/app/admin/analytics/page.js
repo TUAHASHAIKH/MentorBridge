@@ -10,6 +10,24 @@ export default async function AnalyticsPage() {
 
   return (
     <div className={styles.container}>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.badge}>Insights</p>
+          <h1>Platform Analytics</h1>
+          <p className={styles.heroText}>
+            Monitor platform metrics, growth trends, and user engagement statistics.
+          </p>
+        </div>
+
+        <div className={styles.heroPanel}>
+          <div className={styles.heroPanelInner}>
+            <p className={styles.panelLabel}>Data-Driven Decisions</p>
+            <h2>Real-time metrics</h2>
+            <p>Make informed decisions based on comprehensive platform analytics.</p>
+          </div>
+        </div>
+      </section>
+
       <div className={styles.header}>
         <h1>Platform Analytics</h1>
         <p>Monitor platform activity and metrics</p>
