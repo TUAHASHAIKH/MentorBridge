@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 
-import { getAdminServiceClient, getProfileEmail, insertAdminAuditLog, jsonError, requireAdminSession } from '@/lib/admin-action-utils'
+import { getAdminServiceClient, getProfileEmail, getRouteParam, insertAdminAuditLog, jsonError, requireAdminSession } from '@/lib/admin-action-utils'
 
 function normalizeAction(value) {
   return String(value || '').trim().toLowerCase()
 }
 
-export async function PATCH(request, { params }) {
+export async function PATCH(request, context) {
   const auth = await requireAdminSession(request)
   if (auth.response) {
     return auth.response
@@ -16,7 +16,7 @@ export async function PATCH(request, { params }) {
   const body = await request.json().catch(() => null)
   const action = normalizeAction(body?.action)
   const reason = String(body?.reason || '').trim()
-  const userId = params.id
+  const userId = await getRouteParam(context, 'id')
 
   if (!userId) {
     return jsonError('User id is required.')

@@ -22,6 +22,11 @@ export function jsonError(message, status = 400) {
   return NextResponse.json({ error: message }, { status })
 }
 
+export async function getRouteParam(context, key) {
+  const params = await context?.params
+  return params?.[key]
+}
+
 export async function insertAdminAuditLog(supabase, { actorAdminId, action, targetUserId, targetEmail }) {
   const { error } = await supabase.from('admin_audit_logs').insert({
     actor_admin_id: actorAdminId,

@@ -1,5 +1,5 @@
-import AdminRowActions from '../../admin-row-actions'
 import { getPendingMentorApplications } from '@/lib/admin-dashboard-data'
+import ApplicationReviewModal from './application-review-modal'
 import styles from './page.module.css'
 
 export const metadata = {
@@ -35,27 +35,7 @@ export default async function MentorApplicationsPage() {
                 <div className={styles.meta}>
                   <span className={styles.badge}>{app.status}</span>
                   <span>{app.years_of_experience ? `${app.years_of_experience} years` : 'Experience not set'}</span>
-                  <AdminRowActions
-                    endpoint={`/api/admin/mentors/applications/${app.id}`}
-                    actions={[
-                      {
-                        label: 'Approve',
-                        action: 'approve',
-                        variant: 'secondary',
-                        confirmMessage: 'Approve this mentor application?',
-                        successMessage: 'Application approved.',
-                      },
-                      {
-                        label: 'Reject',
-                        action: 'reject',
-                        variant: 'danger',
-                        confirmMessage: 'Reject this mentor application?',
-                        requiresReason: true,
-                        reasonPrompt: 'Enter a rejection reason',
-                        successMessage: 'Application rejected.',
-                      },
-                    ]}
-                  />
+                  <ApplicationReviewModal application={app} />
                 </div>
               </article>
             )

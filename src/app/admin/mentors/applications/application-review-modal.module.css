@@ -1,0 +1,277 @@
+.reviewButton {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 15px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(90deg, #15803d, #166534);
+  box-shadow: 0 6px 16px rgba(21, 128, 61, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reviewButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(21, 128, 61, 0.28);
+}
+
+.inlineMessage {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--mb-text-muted);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  padding: clamp(14px, 3vw, 28px);
+  background:
+    radial-gradient(circle at top left, rgba(0, 55, 65, 0.3), transparent 42%),
+    radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.22), transparent 38%),
+    rgba(2, 6, 23, 0.56);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: overlayFadeIn 180ms ease;
+}
+
+.modal {
+  color-scheme: light;
+  width: min(920px, 100%);
+  max-height: min(92vh, 860px);
+  overflow-y: auto;
+  padding: clamp(16px, 2.2vw, 26px);
+  border-radius: var(--mb-radius-lg);
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border: 1px solid var(--mb-border);
+  box-shadow: 0 28px 70px rgba(15, 23, 42, 0.28);
+  display: grid;
+  gap: 18px;
+  animation: modalEnter 220ms ease;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.identity {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  text-align: left;
+}
+
+.statusPill {
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 146, 60, 0.5);
+  color: #f97316;
+  background: rgba(251, 146, 60, 0.12);
+  padding: 4px 11px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.modalHeader h2 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 42px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--mb-primary);
+  text-align: left;
+}
+
+.modalHeader p {
+  margin: 0;
+  color: var(--mb-text-muted);
+  font-size: 16px;
+  text-align: left;
+}
+
+.closeButton {
+  border: 1px solid var(--mb-border);
+  background: linear-gradient(180deg, #ffffff, #f0fdf4);
+  border-radius: 999px;
+  min-height: 42px;
+  padding: 0 16px;
+  font-weight: 600;
+  color: #14532d;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.grid article {
+  border: 2px solid #003741;
+  border-radius: var(--mb-radius-md);
+  padding: 14px;
+  background: #f0fdf4;
+  box-shadow: inset 0 1px 0 rgba(0, 55, 65, 0.06);
+  text-align: left;
+}
+
+.grid h3 {
+  margin: 0 0 12px;
+  color: var(--mb-primary);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.grid p {
+  margin: 0 0 10px;
+  color: var(--mb-text);
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.grid strong {
+  color: var(--mb-primary);
+  font-weight: 700;
+}
+
+.linkValue {
+  color: #003741;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.rejectionSection {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border-radius: var(--mb-radius-md);
+  border: 1px solid var(--mb-border);
+  background: var(--mb-surface);
+  text-align: left;
+}
+
+.rejectionSection label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mb-text);
+}
+
+.textarea {
+  color-scheme: light;
+  min-height: 92px;
+  resize: vertical;
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-sm);
+  background: #ffffff;
+  color: var(--mb-text);
+  padding: 12px;
+  font: inherit;
+}
+
+.textarea::placeholder {
+  color: #94a3b8;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.approveButton,
+.rejectButton {
+  border: 0;
+  border-radius: 999px;
+  min-height: 42px;
+  padding: 0 18px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.approveButton {
+  background: linear-gradient(90deg, #15803d, #166534);
+}
+
+.rejectButton {
+  background: linear-gradient(90deg, #f97316, #ea580c);
+}
+
+.approveButton:disabled,
+.rejectButton:disabled,
+.closeButton:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 920px) {
+  .modalHeader h2 {
+    font-size: clamp(24px, 6vw, 34px);
+  }
+}
+
+@media (max-width: 760px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal {
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 18px 18px 0 0;
+    padding: 16px;
+  }
+
+  .modalHeader {
+    flex-direction: column;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .approveButton,
+  .rejectButton {
+    flex: 1;
+  }
+}
