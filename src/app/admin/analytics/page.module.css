@@ -77,3 +77,32 @@
   border-radius: 8px;
   border: 1px dashed #cbd5e1;
 }
+
+.snapshots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.snapshot {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: grid;
+  gap: 6px;
+}
+
+.snapshot strong {
+  color: #1e293b;
+}
+
+.snapshot span {
+  font-size: 24px;
+  font-weight: 700;
+  color: #003741;
+}
+
+.snapshot small {
+  color: #64748b;
+}

@@ -1,11 +1,14 @@
 import CreateAdminForm from '../create-admin-form'
+import { getManageAdminsData } from '@/lib/admin-dashboard-data'
 import styles from './page.module.css'
 
 export const metadata = {
   title: 'Manage Admins | MentorBridge',
 }
 
-export default function ManageAdminsPage() {
+export default async function ManageAdminsPage() {
+  const { admins } = await getManageAdminsData()
+
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
@@ -41,6 +44,29 @@ export default function ManageAdminsPage() {
             <li>Oversee Sifarish vouch integrity</li>
           </ul>
         </div>
+      </section>
+
+      <section className={styles.adminDirectory}>
+        <div className={styles.sectionHeader}>
+          <h2>Current Admins</h2>
+          <p>Live list of profiles with the admin role</p>
+        </div>
+
+        {admins.length === 0 ? (
+          <p className={styles.emptyState}>No admins found.</p>
+        ) : (
+          <div className={styles.adminList}>
+            {admins.map((admin) => (
+              <article key={admin.id} className={styles.adminRow}>
+                <div>
+                  <h3>{admin.full_name || 'Unnamed Admin'}</h3>
+                  <p>{admin.email}</p>
+                </div>
+                <span>{new Date(admin.created_at).toLocaleDateString()}</span>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   )

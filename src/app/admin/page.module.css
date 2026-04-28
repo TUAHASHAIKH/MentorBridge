@@ -145,6 +145,93 @@
   gap: 18px;
 }
 
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md);
+  padding: 18px;
+  display: grid;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.statCard span {
+  color: var(--mb-text-muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.statCard strong {
+  font-size: 28px;
+  color: var(--mb-primary);
+}
+
+.logsSection {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border-radius: var(--mb-radius-lg);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--mb-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.sectionHeader h2 {
+  margin: 0 0 4px;
+  color: var(--mb-text);
+  font-size: 20px;
+}
+
+.sectionHeader p {
+  margin: 0;
+  color: var(--mb-text-muted);
+}
+
+.logList {
+  display: grid;
+  gap: 12px;
+}
+
+.logItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--mb-radius-md);
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.logItem h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  color: var(--mb-text);
+}
+
+.logItem p,
+.logItem time {
+  margin: 0;
+  color: var(--mb-text-muted);
+  font-size: 13px;
+}
+
+.emptyState {
+  margin: 0;
+  padding: 18px;
+  text-align: center;
+  color: var(--mb-text-muted);
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--mb-radius-md);
+  background: #f8fafc;
+}
+
 .card {
   background: var(--mb-surface);
   border: 1px solid var(--mb-border);
@@ -312,8 +399,13 @@
   .heroPanelInner,
   .card,
   .subCard,
-  .infoBar {
+  .infoBar,
+  .logsSection {
     padding: 18px;
+  }
+
+  .logItem {
+    flex-direction: column;
   }
 
   .heroActions {

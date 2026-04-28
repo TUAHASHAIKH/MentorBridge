@@ -35,8 +35,8 @@
 }
 
 .table {
-  width: 100%;
-  border-collapse: collapse;
+  display: grid;
+  gap: 12px;
   background: #ffffff;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
@@ -44,34 +44,35 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.table thead {
-  background: #f1f5f9;
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
   border-bottom: 1px solid #e2e8f0;
 }
 
-.table thead th {
-  padding: 16px;
-  text-align: left;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+.row p {
+  margin: 0 0 4px;
   color: #64748b;
 }
 
-.table tbody tr {
-  border-bottom: 1px solid #e2e8f0;
-  transition: background 0.2s ease;
-}
-
-.table tbody tr:hover {
-  background: #f8fafc;
-}
-
-.table tbody td {
-  padding: 16px;
-  font-size: 14px;
-  color: #334155;
+.meta {
+  display: grid;
+  justify-items: end;
+  gap: 6px;
+  min-width: 160px;
+  text-align: right;
 }
 
 .badge {
@@ -87,13 +88,24 @@
   text-transform: capitalize;
 }
 
-.table a {
+.meta a {
   color: #3b82f6;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
 }
 
-.table a:hover {
+.meta a:hover {
   color: #2563eb;
+}
+
+@media (max-width: 640px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .meta {
+    justify-items: start;
+    text-align: left;
+  }
 }

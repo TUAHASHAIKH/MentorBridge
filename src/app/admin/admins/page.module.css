@@ -93,6 +93,65 @@
   align-items: start;
 }
 
+.adminDirectory {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-lg);
+  box-shadow: var(--mb-shadow);
+}
+
+.sectionHeader h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  color: var(--mb-text);
+}
+
+.sectionHeader p {
+  margin: 0;
+  color: var(--mb-text-muted);
+}
+
+.adminList {
+  display: grid;
+  gap: 10px;
+}
+
+.adminRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--mb-radius-md);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.adminRow h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  color: var(--mb-text);
+}
+
+.adminRow p,
+.adminRow span {
+  margin: 0;
+  color: var(--mb-text-muted);
+  font-size: 13px;
+}
+
+.emptyState {
+  margin: 0;
+  padding: 18px;
+  text-align: center;
+  color: var(--mb-text-muted);
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--mb-radius-md);
+  background: #f8fafc;
+}
+
 .sideCard {
   background: var(--mb-surface);
   border: 1px solid var(--mb-border);
@@ -125,7 +184,12 @@
 @media (max-width: 640px) {
   .heroCopy,
   .heroPanelInner,
-  .sideCard {
+  .sideCard,
+  .adminDirectory {
     padding: 18px;
+  }
+
+  .adminRow {
+    flex-direction: column;
   }
 }

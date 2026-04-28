@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { ADMIN_SESSION_COOKIE, deleteAdminSessionByToken, validateAdminSession } from '@/lib/admin-session'
+import { getAdminDashboardOverview } from '@/lib/admin-dashboard-data'
 
 import styles from './page.module.css'
 
@@ -72,6 +73,8 @@ export default async function AdminDashboardPage() {
     redirect('/admin/login')
   }
 
+  const { stats, recentLogs } = await getAdminDashboardOverview()
+
   return (
     <div className={styles.dashboard}>
       <section className={styles.hero}>
@@ -114,6 +117,48 @@ export default async function AdminDashboardPage() {
             </Link>
           </article>
         ))}
+      </section>
+
+      <section className={styles.statsRow}>
+        <div className={styles.statCard}>
+          <span>Mentor Applications</span>
+          <strong>{stats.pendingApplications}</strong>
+        </div>
+        <div className={styles.statCard}>
+          <span>Active Users</span>
+          <strong>{stats.activeUsers}</strong>
+        </div>
+        <div className={styles.statCard}>
+          <span>Active Sessions</span>
+          <strong>{stats.activeSessions}</strong>
+        </div>
+        <div className={styles.statCard}>
+          <span>Flagged Mentors</span>
+          <strong>{stats.flaggedMentors}</strong>
+        </div>
+      </section>
+
+      <section className={styles.logsSection}>
+        <div className={styles.sectionHeader}>
+          <h2>Recent Admin Activity</h2>
+          <p>Latest moderation and admin-management actions</p>
+        </div>
+
+        {recentLogs.length === 0 ? (
+          <p className={styles.emptyState}>No admin audit logs yet.</p>
+        ) : (
+          <div className={styles.logList}>
+            {recentLogs.map((log) => (
+              <article key={log.id} className={styles.logItem}>
+                <div>
+                  <h3>{log.action}</h3>
+                  <p>{log.target_email}</p>
+                </div>
+                <time>{new Date(log.created_at).toLocaleString()}</time>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className={styles.infoBar}>

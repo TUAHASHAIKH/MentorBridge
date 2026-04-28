@@ -1,4 +1,5 @@
-import Link from 'next/link'
+import AdminRowActions from '../../admin-row-actions'
+import { getPendingMentorApplications } from '@/lib/admin-dashboard-data'
 import styles from './page.module.css'
 
 export const metadata = {
@@ -6,8 +7,7 @@ export const metadata = {
 }
 
 export default async function MentorApplicationsPage() {
-  // TODO: Fetch pending mentor applications from API
-  const applications = []
+  const { applications } = await getPendingMentorApplications()
 
   return (
     <div className={styles.container}>
@@ -22,32 +22,44 @@ export default async function MentorApplicationsPage() {
         </div>
       ) : (
         <div className={styles.table}>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Experience</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {applications.map((app) => (
-              <tr key={app.id}>
-                <td>{app.name}</td>
-                <td>{app.email}</td>
-                <td>{app.years_of_experience} years</td>
-                <td>
+          {applications.map((app) => {
+            const profile = app.profiles || {}
+
+            return (
+              <article key={app.id} className={styles.row}>
+                <div>
+                  <h3>{profile.full_name || 'Unnamed applicant'}</h3>
+                  <p>{profile.email}</p>
+                  <p>{app.department || 'Department not provided'}</p>
+                </div>
+                <div className={styles.meta}>
                   <span className={styles.badge}>{app.status}</span>
-                </td>
-                <td>
-                  <Link href={`/admin/mentors/applications/${app.id}`}>
-                    Review →
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                  <span>{app.years_of_experience ? `${app.years_of_experience} years` : 'Experience not set'}</span>
+                  <AdminRowActions
+                    endpoint={`/api/admin/mentors/applications/${app.id}`}
+                    actions={[
+                      {
+                        label: 'Approve',
+                        action: 'approve',
+                        variant: 'secondary',
+                        confirmMessage: 'Approve this mentor application?',
+                        successMessage: 'Application approved.',
+                      },
+                      {
+                        label: 'Reject',
+                        action: 'reject',
+                        variant: 'danger',
+                        confirmMessage: 'Reject this mentor application?',
+                        requiresReason: true,
+                        reasonPrompt: 'Enter a rejection reason',
+                        successMessage: 'Application rejected.',
+                      },
+                    ]}
+                  />
+                </div>
+              </article>
+            )
+          })}
         </div>
       )}
     </div>
