@@ -75,8 +75,7 @@ export default function StudentDashboard() {
         </p>
         <p>
           Want to mentor others?{' '}
-          <Link href="#">Apply as a mentor</Link>
-          {' '}(coming soon)
+          <Link href="/student/apply-mentor">Apply as a mentor →</Link>
         </p>
       </section>
     </div>

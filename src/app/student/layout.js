@@ -9,6 +9,7 @@ import styles from './layout.module.css'
 
 const navLinks = [
   { href: '/student', label: 'Dashboard', exact: true },
+  { href: '/student/apply-mentor', label: 'Apply as Mentor' },
   { href: '/student/mentors', label: 'Browse Mentors', soon: true },
   { href: '/student/sessions', label: 'My Sessions', soon: true },
   { href: '/student/action-items', label: 'Action Items', soon: true },
