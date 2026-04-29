@@ -6,14 +6,6 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import styles from './page.module.css'
 
-const SESSION_TYPE_LABELS = {
-  mock_interview: 'Mock Interview',
-  cv_review: 'CV Review',
-  career_guidance: 'Career Guidance',
-  project_mentorship: 'Project Mentorship',
-  accountability_checkin: 'Accountability Check-in',
-}
-
 const YEAR_OPTIONS = [
   '1st Year',
   '2nd Year',
@@ -24,8 +16,16 @@ const YEAR_OPTIONS = [
 ]
 
 function StatusScreen({ application, onReapply }) {
+  const router = useRouter()
   const isPending = application.status === 'pending'
   const isRejected = application.status === 'rejected'
+  const isApproved = application.status === 'approved'
+
+  // Approved means role should already be 'mentor' — redirect there
+  if (isApproved) {
+    router.replace('/mentor')
+    return null
+  }
 
   return (
     <div className={styles.statusWrap}>
