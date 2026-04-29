@@ -207,6 +207,35 @@ export async function getFlaggedMentorsData() {
   }
 }
 
+export async function getApprovedMentorsWithSessionTypes() {
+  const supabase = getAdminDataClient()
+
+  const { data, error } = await supabase
+    .from('mentor_profiles')
+    .select(`
+      id, user_id, department, year_of_study, avg_rating, total_sessions,
+      mentor_session_types (
+        id, session_type, duration_minutes, is_active,
+        mentor_approved_session_types ( is_approved, restricted_reason )
+      )
+    `)
+    .eq('status', 'approved')
+    .order('created_at', { ascending: false })
+
+  if (error) throw error
+
+  const rows = normalizeRows(data)
+  const profiles = await getProfilesByIds(supabase, rows.map((m) => m.user_id))
+  const profileMap = new Map(profiles.map((p) => [p.id, p]))
+
+  return {
+    mentors: rows.map((m) => ({
+      ...m,
+      profiles: profileMap.get(m.user_id) || null,
+    })),
+  }
+}
+
 export async function getSifarishData() {
   const supabase = getAdminDataClient()
   const { data, error } = await supabase

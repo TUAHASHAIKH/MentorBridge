@@ -165,6 +165,13 @@
   flex-wrap: wrap;
 }
 
+.infoBar a {
+  color: var(--mb-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;

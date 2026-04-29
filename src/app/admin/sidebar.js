@@ -55,6 +55,14 @@ export default function Sidebar() {
             </li>
             <li>
               <Link
+                href="/admin/mentors/approved"
+                className={`${styles.menuItem} ${isActive('/admin/mentors/approved') ? styles.active : ''}`}
+              >
+                Approved Mentors
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/admin/mentors/flagged"
                 className={`${styles.menuItem} ${isActive('/admin/mentors/flagged') ? styles.active : ''}`}
               >

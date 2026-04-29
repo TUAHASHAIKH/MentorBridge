@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useMentorUser } from './user-context'
 import styles from './page.module.css'
 
@@ -68,7 +69,9 @@ export default function MentorDashboard() {
         <p>
           Signed in as <strong>{user?.email}</strong>
         </p>
-        <p>Your mentor profile is managed by the admin team.</p>
+        <p>
+          <Link href="/mentor/profile">Set up your profile and session types →</Link>
+        </p>
       </section>
     </div>
   )
