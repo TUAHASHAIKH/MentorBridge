@@ -1,0 +1,181 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ── Hero ── */
+.hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 36px 40px;
+  background:
+    radial-gradient(circle at 10% 30%, rgba(249, 115, 22, 0.15), transparent 45%),
+    var(--mb-primary);
+  border-radius: var(--mb-radius-lg);
+  color: #fff;
+}
+
+.badge {
+  width: fit-content;
+  border: 1px solid rgba(251, 146, 60, 0.55);
+  color: #fed7aa;
+  background: rgba(124, 45, 18, 0.3);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+  margin-bottom: 8px;
+}
+
+.heroSub {
+  font-size: 14px;
+  color: #bfdbfe;
+  line-height: 1.6;
+  max-width: 440px;
+}
+
+.accountCard {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--mb-radius-md);
+  padding: 20px 24px;
+  min-width: 220px;
+  flex-shrink: 0;
+}
+
+.accountLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.accountEmail {
+  font-size: 13px;
+  color: #e2e8f0;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.roleBadge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(249, 115, 22, 0.3);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.5);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* ── Section ── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionHeader h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mb-text);
+}
+
+.sectionHeader p {
+  font-size: 13px;
+  color: var(--mb-text-muted);
+  margin-top: 4px;
+}
+
+/* ── Feature grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--mb-surface);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.15s;
+}
+
+.card:hover {
+  box-shadow: var(--mb-shadow-soft);
+}
+
+.cardBadge {
+  width: fit-content;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(249, 115, 22, 0.1);
+  color: var(--mb-accent);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--mb-text);
+}
+
+.card p {
+  font-size: 13px;
+  color: var(--mb-text-muted);
+  line-height: 1.55;
+}
+
+/* ── Info bar ── */
+.infoBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--mb-surface);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md);
+  font-size: 13px;
+  color: var(--mb-text-muted);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .accountCard {
+    width: 100%;
+  }
+}

@@ -1,0 +1,233 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+}
+
+.shell {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ── Brand panel ── */
+.brandPanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.12), transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(249, 115, 22, 0.10), transparent 50%),
+    var(--mb-primary);
+  color: #fff;
+}
+
+.brandBlock {
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.brandName {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fb923c;
+}
+
+.brandPanel h2 {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #f8fafc;
+}
+
+.brandDesc {
+  font-size: 14px;
+  color: #bfdbfe;
+  line-height: 1.6;
+}
+
+.mentorNote {
+  font-size: 12px;
+  color: #94a3b8;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: var(--mb-radius-sm);
+  line-height: 1.5;
+}
+
+/* ── Form panel ── */
+.formPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 56px;
+  background: var(--mb-surface);
+}
+
+.badge {
+  width: fit-content;
+  background: rgba(0, 55, 65, 0.08);
+  color: var(--mb-primary-2);
+  border: 1px solid rgba(0, 55, 65, 0.18);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.formPanel h1 {
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--mb-text);
+  margin-bottom: 6px;
+}
+
+.subtext {
+  font-size: 13px;
+  color: var(--mb-text-muted);
+  margin-bottom: 28px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+.form label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mb-text-muted);
+}
+
+.form input {
+  height: 42px;
+  border-radius: var(--mb-radius-sm);
+  border: 1px solid var(--mb-border);
+  background: var(--mb-surface-2);
+  color: var(--mb-text);
+  padding: 0 12px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: var(--mb-primary-2);
+  box-shadow: 0 0 0 3px rgba(11, 89, 101, 0.12);
+}
+
+.form button {
+  margin-top: 8px;
+  height: 40px;
+  border: 0;
+  border-radius: var(--mb-radius-sm);
+  background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.form button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.form button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.error {
+  font-size: 13px;
+  color: var(--mb-danger);
+  background: rgba(185, 28, 28, 0.07);
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  border-radius: var(--mb-radius-sm);
+  padding: 10px 12px;
+}
+
+.switchLink {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--mb-text-muted);
+}
+
+.switchLink a {
+  color: var(--mb-primary-2);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── Email confirmation screen ── */
+.confirmBox {
+  margin: auto;
+  max-width: 440px;
+  text-align: center;
+  padding: 48px 32px;
+  background: var(--mb-surface);
+  border-radius: var(--mb-radius-lg);
+  box-shadow: var(--mb-shadow);
+}
+
+.confirmIcon {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.confirmBox h2 {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.confirmBox p {
+  font-size: 14px;
+  color: var(--mb-text-muted);
+  line-height: 1.6;
+}
+
+.confirmBox a {
+  color: var(--mb-primary-2);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 860px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .brandPanel {
+    padding: 32px 24px;
+  }
+
+  .brandPanel h2 {
+    font-size: 24px;
+  }
+
+  .formPanel {
+    padding: 32px 24px;
+  }
+
+  .formPanel h1 {
+    font-size: 32px;
+  }
+}
