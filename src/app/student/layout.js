@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/student/apply-mentor', label: 'Apply as Mentor' },
   { href: '/student/mentors', label: 'Browse Mentors' },
   { href: '/student/sessions', label: 'My Sessions' },
+  { href: '/student/sifarish', label: 'My Vouches' },
   { href: '/student/action-items', label: 'Action Items', soon: true },
   { href: '/student/profile', label: 'My Profile', soon: true },
 ]

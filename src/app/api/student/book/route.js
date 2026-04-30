@@ -72,6 +72,22 @@ export async function POST(request) {
     )
   }
 
+  // Prevent double-booking: student cannot have a pending/confirmed session with the same mentor
+  const { data: existingSession } = await supabase
+    .from('sessions')
+    .select('id')
+    .eq('student_id', profile.id)
+    .eq('mentor_id', mentor_id)
+    .in('status', ['pending', 'confirmed'])
+    .maybeSingle()
+
+  if (existingSession) {
+    return NextResponse.json(
+      { error: 'You already have an active session with this mentor. Complete or cancel it before booking again.' },
+      { status: 409 }
+    )
+  }
+
   // Create the session
   const { data: session, error: sessionError } = await supabase
     .from('sessions')

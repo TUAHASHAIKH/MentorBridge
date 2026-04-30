@@ -10,22 +10,25 @@ const upcomingFeatures = [
     description: 'Find senior peers who offer mock interviews, CV reviews, career guidance, and more. Filter by session type.',
     accent: 'Live',
     href: '/student/mentors',
+    cta: 'Browse mentors →',
   },
   {
     title: 'Book a Session',
-    description: 'Submit a pre-session brief and request a slot. Mentor contact is revealed only after confirmation.',
-    accent: 'Coming Soon',
-    href: '#',
+    description: 'Submit a pre-session brief and request a slot with a mentor. Contact is revealed only after confirmation.',
+    accent: 'Live',
+    href: '/student/sessions',
+    cta: 'View my sessions →',
+  },
+  {
+    title: 'Sifarish Vouches',
+    description: 'Collect verified endorsements from mentors after completed sessions. Permanent on your profile.',
+    accent: 'Live',
+    href: '/student/sifarish',
+    cta: 'View my vouches →',
   },
   {
     title: 'Action Items',
     description: 'Track roadmap tasks and deadlines set by your mentor after each session.',
-    accent: 'Coming Soon',
-    href: '#',
-  },
-  {
-    title: 'Sifarish Vouches',
-    description: 'Collect verified endorsements from mentors on your profile after completed sessions.',
     accent: 'Coming Soon',
     href: '#',
   },
@@ -55,7 +58,7 @@ export default function StudentDashboard() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2>Platform Features</h2>
-          <p>Browse Mentors is live. More features coming soon.</p>
+          <p>Browse mentors, book sessions, and collect Sifarish vouches. Action Items coming soon.</p>
         </div>
 
         <div className={styles.grid}>
@@ -68,7 +71,7 @@ export default function StudentDashboard() {
                 </span>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
-                {isLive && <span className={styles.cardCta}>Browse now →</span>}
+                {isLive && <span className={styles.cardCta}>{feature.cta || 'Open →'}</span>}
               </>
             )
             return isLive ? (
