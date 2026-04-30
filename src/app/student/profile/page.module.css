@@ -1,0 +1,140 @@
+.loadingWrap { min-height: 40vh; display: flex; align-items: center; justify-content: center; }
+
+.spinner {
+  display: block; width: 28px; height: 28px;
+  border: 3px solid var(--mb-border); border-top-color: var(--mb-primary);
+  border-radius: 50%; animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.page { display: flex; flex-direction: column; gap: 32px; }
+
+/* ── Profile header ── */
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  background: var(--mb-surface);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md);
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--mb-primary);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+
+.identity { display: flex; flex-direction: column; gap: 4px; }
+
+.identity h1 { font-size: 22px; font-weight: 600; color: var(--mb-text); letter-spacing: -0.01em; }
+
+.email { font-size: 13px; color: var(--mb-text-muted); }
+
+.roleBadge {
+  width: fit-content;
+  background: rgba(0,55,65,0.07); color: var(--mb-primary-2);
+  border: 1px solid rgba(0,55,65,0.15); border-radius: 999px;
+  padding: 2px 10px; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* ── Stats ── */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.statCard {
+  background: var(--mb-surface);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statValue { font-size: 28px; font-weight: 700; color: var(--mb-text); letter-spacing: -0.02em; line-height: 1; }
+.statLabel { font-size: 12px; color: var(--mb-text-muted); }
+
+/* ── Section ── */
+.section { display: flex; flex-direction: column; gap: 16px; }
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--mb-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionCount {
+  background: var(--mb-surface-2);
+  border: 1px solid var(--mb-border);
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mb-text-muted);
+}
+
+.empty {
+  padding: 40px 24px; text-align: center;
+  border: 2px dashed var(--mb-border); border-radius: var(--mb-radius-md);
+}
+.empty p { font-size: 14px; color: var(--mb-text-muted); }
+
+.vouchesList { display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Vouch card ── */
+.vouchCard {
+  background: var(--mb-surface); border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md); padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+.vouchHead { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+
+.mentorName { font-size: 14px; font-weight: 600; color: var(--mb-text); }
+.vouchDate { font-size: 12px; color: var(--mb-text-muted); margin-top: 2px; }
+
+.verifiedBadge {
+  flex-shrink: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--mb-success); background: rgba(22,101,52,0.08);
+  border: 1px solid rgba(22,101,52,0.2); border-radius: 999px; padding: 3px 10px;
+}
+
+.vouchText {
+  font-size: 13px; color: var(--mb-text); line-height: 1.65; font-style: italic;
+  border-left: 3px solid var(--mb-accent); margin: 0; padding-left: 14px;
+}
+
+.skillsRow { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.skillTag {
+  background: rgba(249,115,22,0.08); color: var(--mb-accent);
+  border: 1px solid rgba(249,115,22,0.2); border-radius: 999px;
+  padding: 3px 10px; font-size: 11px; font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .statsRow { grid-template-columns: repeat(2, 1fr); }
+  .profileHeader { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .statsRow { grid-template-columns: 1fr 1fr; }
+}

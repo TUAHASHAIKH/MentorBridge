@@ -29,8 +29,9 @@ const upcomingFeatures = [
   {
     title: 'Action Items',
     description: 'Track roadmap tasks and deadlines set by your mentor after each session.',
-    accent: 'Coming Soon',
-    href: '#',
+    accent: 'Live',
+    href: '/student/action-items',
+    cta: 'View action items →',
   },
 ]
 
@@ -58,7 +59,7 @@ export default function StudentDashboard() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2>Platform Features</h2>
-          <p>Browse mentors, book sessions, and collect Sifarish vouches. Action Items coming soon.</p>
+          <p>All core features are live — browse mentors, book sessions, collect Sifarish vouches, and track action items.</p>
         </div>
 
         <div className={styles.grid}>

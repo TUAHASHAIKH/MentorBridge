@@ -57,6 +57,20 @@ export async function GET(request) {
     reviewMap = new Map((reviews || []).map((r) => [r.session_id, { rating: r.rating, feedback: r.feedback }]))
   }
 
+  let actionItemsMap = new Map()
+  if (sessionIds.length > 0) {
+    const { data: items } = await supabase
+      .from('action_items')
+      .select('id, session_id, title, description, due_date, status, created_at')
+      .in('session_id', sessionIds)
+      .order('created_at', { ascending: true })
+
+    for (const item of items || []) {
+      const existing = actionItemsMap.get(item.session_id) || []
+      actionItemsMap.set(item.session_id, [...existing, item])
+    }
+  }
+
   return NextResponse.json({
     sessions: rows.map((s) => ({
       ...s,
@@ -64,6 +78,7 @@ export async function GET(request) {
       student_email: studentMap.get(s.student_id)?.email || null,
       review: reviewMap.get(s.id) || null,
       has_sifarish: sifarishSet.has(s.id),
+      action_items: actionItemsMap.get(s.id) || [],
     })),
   })
 }

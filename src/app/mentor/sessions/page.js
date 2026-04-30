@@ -19,6 +19,10 @@ function formatDateTime(iso) {
   return new Date(iso).toLocaleString('en-PK', { dateStyle: 'medium', timeStyle: 'short' })
 }
 
+function formatDate(date) {
+  return new Date(date).toLocaleDateString('en-PK', { dateStyle: 'medium' })
+}
+
 function StatusBadge({ status }) {
   return <span className={`${styles.badge} ${styles[status] || ''}`}>{status}</span>
 }
@@ -26,17 +30,12 @@ function StatusBadge({ status }) {
 function BriefSection({ brief }) {
   const [open, setOpen] = useState(false)
   if (!brief) return null
-
   const hasContent = brief.goals || brief.background || brief.specific_questions || brief.desired_outcome
   if (!hasContent) return null
 
   return (
     <div className={styles.briefWrap}>
-      <button
-        type="button"
-        className={styles.briefToggle}
-        onClick={() => setOpen((o) => !o)}
-      >
+      <button type="button" className={styles.briefToggle} onClick={() => setOpen((o) => !o)}>
         Pre-session brief {open ? '▲' : '▼'}
       </button>
       {open && (
@@ -83,6 +82,107 @@ function ReviewSection({ review }) {
   )
 }
 
+function ActionItemsSection({ sessionId, initialItems, token }) {
+  const [items, setItems] = useState(initialItems || [])
+  const [showForm, setShowForm] = useState(false)
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [dueDate, setDueDate] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [formError, setFormError] = useState('')
+
+  async function handleAdd(e) {
+    e.preventDefault()
+    if (!title.trim()) return
+    setSubmitting(true)
+    setFormError('')
+    const res = await fetch('/api/mentor/action-items', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ session_id: sessionId, title, description, due_date: dueDate || null }),
+    })
+    const data = await res.json().catch(() => ({}))
+    setSubmitting(false)
+    if (!res.ok) { setFormError(data.error || 'Failed to add item.'); return }
+    setItems((prev) => [...prev, data.item])
+    setTitle('')
+    setDescription('')
+    setDueDate('')
+    setShowForm(false)
+  }
+
+  return (
+    <div className={styles.actionItems}>
+      <p className={styles.actionItemsLabel}>Action Items</p>
+
+      {items.length > 0 && (
+        <ul className={styles.itemsList}>
+          {items.map((item) => (
+            <li key={item.id} className={styles.itemRow}>
+              <div className={styles.itemInfo}>
+                <span className={styles.itemTitle}>{item.title}</span>
+                {item.description && <span className={styles.itemDesc}>{item.description}</span>}
+                {item.due_date && (
+                  <span className={styles.itemDue}>Due {formatDate(item.due_date)}</span>
+                )}
+              </div>
+              <span className={`${styles.itemStatus} ${styles['is_' + item.status]}`}>
+                {item.status.replace('_', ' ')}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {!showForm && (
+        <button className={styles.addItemBtn} onClick={() => setShowForm(true)}>
+          + Add Action Item
+        </button>
+      )}
+
+      {showForm && (
+        <form className={styles.itemForm} onSubmit={handleAdd}>
+          <input
+            className={styles.itemInput}
+            placeholder="Task title (required)"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+          <textarea
+            className={styles.itemTextarea}
+            placeholder="Description (optional)"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={2}
+          />
+          <div className={styles.itemFormRow}>
+            <input
+              type="date"
+              className={styles.itemDateInput}
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+            />
+            <div className={styles.itemFormBtns}>
+              <button type="submit" className={styles.itemSubmitBtn} disabled={submitting || !title.trim()}>
+                {submitting ? '…' : 'Add'}
+              </button>
+              <button
+                type="button"
+                className={styles.itemCancelBtn}
+                onClick={() => { setShowForm(false); setTitle(''); setDescription(''); setDueDate('') }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+          {formError && <p className={styles.itemError}>{formError}</p>}
+        </form>
+      )}
+    </div>
+  )
+}
+
 function SifarishForm({ session, token, onWritten }) {
   const [vouchText, setVouchText] = useState('')
   const [skillsInput, setSkillsInput] = useState('')
@@ -92,28 +192,17 @@ function SifarishForm({ session, token, onWritten }) {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (!vouchText.trim()) {
-      setError('Vouch text is required.')
-      return
-    }
+    if (!vouchText.trim()) { setError('Vouch text is required.'); return }
     setSubmitting(true)
     setError('')
     const res = await fetch('/api/mentor/sifarish', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({
-        session_id: session.id,
-        vouch_text: vouchText,
-        skills_endorsed: skillsInput,
-        is_public: isPublic,
-      }),
+      body: JSON.stringify({ session_id: session.id, vouch_text: vouchText, skills_endorsed: skillsInput, is_public: isPublic }),
     })
     const data = await res.json().catch(() => ({}))
     setSubmitting(false)
-    if (!res.ok) {
-      setError(data.error || 'Failed to submit Sifarish.')
-      return
-    }
+    if (!res.ok) { setError(data.error || 'Failed to submit Sifarish.'); return }
     onWritten(session.id)
   }
 
@@ -125,7 +214,7 @@ function SifarishForm({ session, token, onWritten }) {
       </p>
       <textarea
         className={styles.sifarishTextarea}
-        placeholder={`e.g., "${session.student_name} came exceptionally prepared for our mock interview. They demonstrated strong problem-solving skills and incorporated feedback instantly. I'd confidently recommend them to any employer."`}
+        placeholder={`e.g., "${session.student_name} came exceptionally prepared..."`}
         value={vouchText}
         onChange={(e) => setVouchText(e.target.value)}
         rows={4}
@@ -144,11 +233,7 @@ function SifarishForm({ session, token, onWritten }) {
           <p className={styles.sifarishHint}>Comma-separated. Leave blank to skip.</p>
         </div>
         <label className={styles.sifarishToggle}>
-          <input
-            type="checkbox"
-            checked={isPublic}
-            onChange={(e) => setIsPublic(e.target.checked)}
-          />
+          <input type="checkbox" checked={isPublic} onChange={(e) => setIsPublic(e.target.checked)} />
           Make this vouch public on student profile
         </label>
       </div>
@@ -181,10 +266,7 @@ function SessionCard({ session, token, onUpdate }) {
     })
     const data = await res.json().catch(() => ({}))
     setBusy(false)
-    if (!res.ok) {
-      setCardError(data.error || 'Action failed.')
-      return false
-    }
+    if (!res.ok) { setCardError(data.error || 'Action failed.'); return false }
     onUpdate(session.id, data)
     return true
   }
@@ -193,13 +275,9 @@ function SessionCard({ session, token, onUpdate }) {
     <article className={styles.card}>
       <div className={styles.cardHead}>
         <div>
-          <p className={styles.sessionType}>
-            {SESSION_TYPE_LABELS[session.session_type] || session.session_type}
-          </p>
+          <p className={styles.sessionType}>{SESSION_TYPE_LABELS[session.session_type] || session.session_type}</p>
           <p className={styles.studentName}>{session.student_name}</p>
-          {session.student_email && (
-            <p className={styles.studentEmail}>{session.student_email}</p>
-          )}
+          {session.student_email && <p className={styles.studentEmail}>{session.student_email}</p>}
         </div>
         <StatusBadge status={session.status} />
       </div>
@@ -214,12 +292,7 @@ function SessionCard({ session, token, onUpdate }) {
       {session.status === 'confirmed' && session.meeting_link && (
         <div className={styles.linkBox}>
           <p className={styles.linkLabel}>Meeting Link</p>
-          <a
-            href={session.meeting_link}
-            target="_blank"
-            rel="noreferrer"
-            className={styles.meetingLink}
-          >
+          <a href={session.meeting_link} target="_blank" rel="noreferrer" className={styles.meetingLink}>
             {session.meeting_link}
           </a>
         </div>
@@ -227,18 +300,21 @@ function SessionCard({ session, token, onUpdate }) {
 
       {session.status === 'completed' && <ReviewSection review={session.review} />}
 
+      {session.status === 'completed' && (
+        <ActionItemsSection
+          sessionId={session.id}
+          initialItems={session.action_items}
+          token={token}
+        />
+      )}
+
       {session.status === 'completed' && session.has_sifarish && (
-        <div className={styles.sifarishWritten}>
-          ✓ Sifarish written for this student.
-        </div>
+        <div className={styles.sifarishWritten}>✓ Sifarish written for this student.</div>
       )}
 
       {session.status === 'completed' && !session.has_sifarish && !showSifarishForm && (
         <div className={styles.sifarishPromptRow}>
-          <button
-            className={styles.sifarishBtn}
-            onClick={() => setShowSifarishForm(true)}
-          >
+          <button className={styles.sifarishBtn} onClick={() => setShowSifarishForm(true)}>
             Write Sifarish
           </button>
         </div>
@@ -259,34 +335,20 @@ function SessionCard({ session, token, onUpdate }) {
 
       <div className={styles.actions}>
         {session.status === 'pending' && (
-          <button
-            className={styles.acceptBtn}
-            disabled={busy}
-            onClick={() => doAction('accept')}
-          >
+          <button className={styles.acceptBtn} disabled={busy} onClick={() => doAction('accept')}>
             {busy ? '…' : 'Accept'}
           </button>
         )}
-
         {session.status === 'pending' && (
-          <button
-            className={styles.cancelBtn}
-            disabled={busy}
-            onClick={() => doAction('cancel')}
-          >
+          <button className={styles.cancelBtn} disabled={busy} onClick={() => doAction('cancel')}>
             Decline
           </button>
         )}
-
         {session.status === 'confirmed' && !showLinkForm && (
-          <button
-            className={styles.linkBtn}
-            onClick={() => setShowLinkForm(true)}
-          >
+          <button className={styles.linkBtn} onClick={() => setShowLinkForm(true)}>
             {session.meeting_link ? 'Update Link' : '+ Add Meeting Link'}
           </button>
         )}
-
         {session.status === 'confirmed' && showLinkForm && (
           <div className={styles.linkForm}>
             <input
@@ -298,38 +360,22 @@ function SessionCard({ session, token, onUpdate }) {
             <button
               className={styles.acceptBtn}
               disabled={busy || !linkInput.trim()}
-              onClick={async () => {
-                const ok = await doAction('add_link', { meeting_link: linkInput })
-                if (ok) setShowLinkForm(false)
-              }}
+              onClick={async () => { const ok = await doAction('add_link', { meeting_link: linkInput }); if (ok) setShowLinkForm(false) }}
             >
               {busy ? '…' : 'Save'}
             </button>
-            <button
-              className={styles.cancelBtn}
-              onClick={() => { setShowLinkForm(false); setLinkInput(session.meeting_link || '') }}
-            >
+            <button className={styles.cancelBtn} onClick={() => { setShowLinkForm(false); setLinkInput(session.meeting_link || '') }}>
               Cancel
             </button>
           </div>
         )}
-
         {session.status === 'confirmed' && (
-          <button
-            className={styles.completeBtn}
-            disabled={busy}
-            onClick={() => doAction('complete')}
-          >
+          <button className={styles.completeBtn} disabled={busy} onClick={() => doAction('complete')}>
             {busy ? '…' : 'Mark Complete'}
           </button>
         )}
-
         {session.status === 'confirmed' && (
-          <button
-            className={styles.cancelBtn}
-            disabled={busy}
-            onClick={() => doAction('cancel')}
-          >
+          <button className={styles.cancelBtn} disabled={busy} onClick={() => doAction('cancel')}>
             Cancel Session
           </button>
         )}
@@ -348,10 +394,7 @@ export default function MentorSessionsPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (!session) {
-        router.replace('/login')
-        return
-      }
+      if (!session) { router.replace('/login'); return }
       setToken(session.access_token)
 
       const res = await fetch('/api/mentor/sessions', {
@@ -381,7 +424,6 @@ export default function MentorSessionsPage() {
         prev.map((s) => (s.id === sessionId ? { ...s, has_sifarish: true } : s))
       )
     } else {
-      // meeting link update — refetch to get updated link
       supabase.auth.getSession().then(async ({ data: { session } }) => {
         if (!session) return
         const res = await fetch('/api/mentor/sessions', {
@@ -407,11 +449,7 @@ export default function MentorSessionsPage() {
   }, [sessions])
 
   if (loading) {
-    return (
-      <div className={styles.loadingWrap}>
-        <span className={styles.spinner} />
-      </div>
-    )
+    return <div className={styles.loadingWrap}><span className={styles.spinner} /></div>
   }
 
   return (
@@ -419,9 +457,7 @@ export default function MentorSessionsPage() {
       <div className={styles.pageHeader}>
         <p className={styles.pageBadge}>My Sessions</p>
         <h1>Sessions</h1>
-        <p className={styles.subtitle}>
-          Accept requests, add meeting links, and mark sessions complete.
-        </p>
+        <p className={styles.subtitle}>Accept requests, add meeting links, assign action items, and mark sessions complete.</p>
       </div>
 
       {error && <p className={styles.error}>{error}</p>}

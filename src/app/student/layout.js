@@ -13,8 +13,8 @@ const navLinks = [
   { href: '/student/mentors', label: 'Browse Mentors' },
   { href: '/student/sessions', label: 'My Sessions' },
   { href: '/student/sifarish', label: 'My Vouches' },
-  { href: '/student/action-items', label: 'Action Items', soon: true },
-  { href: '/student/profile', label: 'My Profile', soon: true },
+  { href: '/student/action-items', label: 'Action Items' },
+  { href: '/student/profile', label: 'My Profile' },
 ]
 
 export default function StudentLayout({ children }) {
