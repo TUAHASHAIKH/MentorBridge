@@ -25,6 +25,7 @@ export async function GET(request) {
   }
 
   const rows = data || []
+  const sessionIds = rows.map((s) => s.id)
   const studentIds = [...new Set(rows.map((s) => s.student_id).filter(Boolean))]
 
   let studentMap = new Map()
@@ -37,11 +38,22 @@ export async function GET(request) {
     studentMap = new Map((profileRows || []).map((p) => [p.id, { full_name: p.full_name, email: p.email }]))
   }
 
+  let reviewMap = new Map()
+  if (sessionIds.length > 0) {
+    const { data: reviews } = await supabase
+      .from('session_reviews')
+      .select('session_id, rating, feedback')
+      .in('session_id', sessionIds)
+
+    reviewMap = new Map((reviews || []).map((r) => [r.session_id, { rating: r.rating, feedback: r.feedback }]))
+  }
+
   return NextResponse.json({
     sessions: rows.map((s) => ({
       ...s,
       student_name: studentMap.get(s.student_id)?.full_name || 'Unknown Student',
       student_email: studentMap.get(s.student_id)?.email || null,
+      review: reviewMap.get(s.id) || null,
     })),
   })
 }

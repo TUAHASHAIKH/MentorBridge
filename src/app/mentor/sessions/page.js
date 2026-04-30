@@ -71,6 +71,18 @@ function BriefSection({ brief }) {
   )
 }
 
+function ReviewSection({ review }) {
+  if (!review) return null
+  const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating)
+  return (
+    <div className={styles.reviewBox}>
+      <p className={styles.reviewLabel}>Student Rating</p>
+      <div className={styles.reviewStars}>{stars}</div>
+      {review.feedback && <p className={styles.reviewFeedback}>"{review.feedback}"</p>}
+    </div>
+  )
+}
+
 function SessionCard({ session, token, onUpdate }) {
   const [linkInput, setLinkInput] = useState(session.meeting_link || '')
   const [showLinkForm, setShowLinkForm] = useState(false)
@@ -132,6 +144,8 @@ function SessionCard({ session, token, onUpdate }) {
           </a>
         </div>
       )}
+
+      {session.status === 'completed' && <ReviewSection review={session.review} />}
 
       {cardError && <p className={styles.cardError}>{cardError}</p>}
 

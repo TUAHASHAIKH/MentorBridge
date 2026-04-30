@@ -194,6 +194,39 @@
   margin-bottom: 3px;
 }
 
+/* ── Student review ── */
+.reviewBox {
+  background: rgba(245,158,11,0.06);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: var(--mb-radius-sm);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reviewLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mb-text-muted);
+}
+
+.reviewStars {
+  font-size: 16px;
+  color: #f59e0b;
+  letter-spacing: 1px;
+}
+
+.reviewFeedback {
+  font-size: 13px;
+  color: var(--mb-text);
+  font-style: italic;
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
 /* ── Meeting link display ── */
 .linkBox {
   background: rgba(0,55,65,0.05);
