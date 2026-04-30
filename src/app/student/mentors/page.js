@@ -29,7 +29,7 @@ function getMinDatetime() {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`
 }
 
-// ── Booking modal ──────────────────────────────────────────────────────────────
+// ── Booking modal ─────────────────────────────────────────────────────────────
 
 function BookingModal({ mentor, token, onClose, onSuccess }) {
   const [sessionType, setSessionType] = useState(mentor.session_types[0]?.session_type || '')
