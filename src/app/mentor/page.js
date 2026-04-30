@@ -4,26 +4,34 @@ import Link from 'next/link'
 import { useMentorUser } from './user-context'
 import styles from './page.module.css'
 
-const upcomingFeatures = [
-  {
-    title: 'Session Requests',
-    description: 'Review incoming booking requests from students. Read their pre-session briefs before accepting.',
-    accent: 'Coming Soon',
-  },
+const features = [
   {
     title: 'My Sessions',
-    description: 'Manage confirmed sessions, mark completions, and set meeting links.',
-    accent: 'Coming Soon',
+    description: 'Manage confirmed sessions, mark completions, set meeting links, and write action items for mentees.',
+    accent: 'Live',
+    href: '/mentor/sessions',
+    cta: 'Manage sessions →',
   },
   {
-    title: 'Accountability Plans',
-    description: 'Create roadmaps with action items and deadlines for mentees after each session.',
-    accent: 'Coming Soon',
+    title: 'My Sifarish',
+    description: 'Write verified endorsements for students after completed sessions. View all vouches you have written.',
+    accent: 'Live',
+    href: '/mentor/sifarish',
+    cta: 'View vouches →',
   },
   {
-    title: 'Write Sifarish',
-    description: 'Endorse students with a verified vouch after completing a session with them.',
-    accent: 'Coming Soon',
+    title: 'Action Items',
+    description: 'Create roadmaps with tasks and deadlines for mentees directly from your completed sessions.',
+    accent: 'Live',
+    href: '/mentor/sessions',
+    cta: 'Add action items →',
+  },
+  {
+    title: 'Mentor Profile',
+    description: 'Set up your profile, session types, availability, and public bio that students browse.',
+    accent: 'Live',
+    href: '/mentor/profile',
+    cta: 'Edit profile →',
   },
 ]
 
@@ -51,16 +59,17 @@ export default function MentorDashboard() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2>Mentor Tools</h2>
-          <p>These features are being built — check back soon.</p>
+          <p>All core tools are live — manage sessions, create action items, and write Sifarish vouches for your mentees.</p>
         </div>
 
         <div className={styles.grid}>
-          {upcomingFeatures.map((feature) => (
-            <article key={feature.title} className={styles.card}>
-              <span className={styles.cardBadge}>{feature.accent}</span>
+          {features.map((feature) => (
+            <Link key={feature.title} href={feature.href} className={styles.card}>
+              <span className={`${styles.cardBadge} ${styles.cardBadgeLive}`}>{feature.accent}</span>
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
-            </article>
+              <span className={styles.cardCta}>{feature.cta}</span>
+            </Link>
           ))}
         </div>
       </section>

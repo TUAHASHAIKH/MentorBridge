@@ -119,11 +119,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: box-shadow 0.15s;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  text-decoration: none;
+  color: inherit;
 }
 
 .card:hover {
   box-shadow: var(--mb-shadow-soft);
+  border-color: var(--mb-accent);
 }
 
 .cardBadge {
@@ -136,6 +139,19 @@
   color: var(--mb-accent);
   border-radius: 999px;
   padding: 3px 10px;
+}
+
+.cardBadgeLive {
+  background: rgba(22, 101, 52, 0.1);
+  color: var(--mb-success);
+  border: 1px solid rgba(22, 101, 52, 0.2);
+}
+
+.cardCta {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mb-accent);
+  margin-top: auto;
 }
 
 .card h3 {
