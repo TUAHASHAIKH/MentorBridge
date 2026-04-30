@@ -1,0 +1,152 @@
+.loadingWrap {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--mb-border);
+  border-top-color: var(--mb-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.page { display: flex; flex-direction: column; gap: 24px; }
+
+.pageHeader { display: flex; flex-direction: column; gap: 8px; }
+
+.pageBadge {
+  width: fit-content;
+  background: rgba(249,115,22,0.1);
+  color: var(--mb-accent);
+  border: 1px solid rgba(249,115,22,0.25);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pageHeader h1 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--mb-text);
+}
+
+.subtitle { font-size: 13px; color: var(--mb-text-muted); line-height: 1.6; }
+
+.error {
+  font-size: 13px;
+  color: var(--mb-danger);
+  background: rgba(185,28,28,0.07);
+  border: 1px solid rgba(185,28,28,0.2);
+  border-radius: var(--mb-radius-sm);
+  padding: 10px 14px;
+}
+
+.empty {
+  padding: 56px 24px;
+  text-align: center;
+  border: 2px dashed var(--mb-border);
+  border-radius: var(--mb-radius-md);
+}
+.empty p { font-size: 14px; color: var(--mb-text-muted); }
+.emptyHint { font-size: 13px; margin-top: 8px; }
+
+.count { font-size: 13px; color: var(--mb-text-muted); }
+
+.list { display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Card ── */
+.card {
+  background: var(--mb-surface);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.studentName { font-size: 15px; font-weight: 600; color: var(--mb-text); }
+
+.studentEmail { font-size: 12px; color: var(--mb-text-muted); margin-top: 2px; }
+
+.cardMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.date { font-size: 12px; color: var(--mb-text-muted); }
+
+/* ── Status badges ── */
+.statusBadge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.statusActive   { background: rgba(0,55,65,0.08); color: var(--mb-primary-2); border: 1px solid rgba(0,55,65,0.2); }
+.statusVerified { background: rgba(22,101,52,0.08); color: var(--mb-success); border: 1px solid rgba(22,101,52,0.2); }
+.statusFlagged  { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+.statusRevoked  { background: rgba(185,28,28,0.07); color: var(--mb-danger); border: 1px solid rgba(185,28,28,0.2); }
+
+/* ── Vouch text ── */
+.vouchText {
+  font-size: 14px;
+  color: var(--mb-text);
+  line-height: 1.65;
+  font-style: italic;
+  border-left: 3px solid var(--mb-accent);
+  margin: 0;
+  padding-left: 14px;
+}
+
+/* ── Skills ── */
+.skillsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skillTag {
+  background: rgba(249,115,22,0.08);
+  color: var(--mb-accent);
+  border: 1px solid rgba(249,115,22,0.2);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.visibility {
+  font-size: 11px;
+  color: var(--mb-text-muted);
+}
+
+@media (max-width: 640px) {
+  .cardHead { flex-direction: column; }
+  .cardMeta { align-items: flex-start; }
+}

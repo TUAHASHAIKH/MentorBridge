@@ -28,6 +28,15 @@ export async function GET(request) {
   const sessionIds = rows.map((s) => s.id)
   const studentIds = [...new Set(rows.map((s) => s.student_id).filter(Boolean))]
 
+  let sifarishSet = new Set()
+  if (sessionIds.length > 0) {
+    const { data: vouches } = await supabase
+      .from('sifarish_vouches')
+      .select('session_id')
+      .in('session_id', sessionIds)
+    sifarishSet = new Set((vouches || []).map((v) => v.session_id))
+  }
+
   let studentMap = new Map()
   if (studentIds.length > 0) {
     const { data: profileRows } = await supabase
@@ -54,6 +63,7 @@ export async function GET(request) {
       student_name: studentMap.get(s.student_id)?.full_name || 'Unknown Student',
       student_email: studentMap.get(s.student_id)?.email || null,
       review: reviewMap.get(s.id) || null,
+      has_sifarish: sifarishSet.has(s.id),
     })),
   })
 }

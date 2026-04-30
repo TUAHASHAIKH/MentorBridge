@@ -83,9 +83,89 @@ function ReviewSection({ review }) {
   )
 }
 
+function SifarishForm({ session, token, onWritten }) {
+  const [vouchText, setVouchText] = useState('')
+  const [skillsInput, setSkillsInput] = useState('')
+  const [isPublic, setIsPublic] = useState(true)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    if (!vouchText.trim()) {
+      setError('Vouch text is required.')
+      return
+    }
+    setSubmitting(true)
+    setError('')
+    const res = await fetch('/api/mentor/sifarish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({
+        session_id: session.id,
+        vouch_text: vouchText,
+        skills_endorsed: skillsInput,
+        is_public: isPublic,
+      }),
+    })
+    const data = await res.json().catch(() => ({}))
+    setSubmitting(false)
+    if (!res.ok) {
+      setError(data.error || 'Failed to submit Sifarish.')
+      return
+    }
+    onWritten(session.id)
+  }
+
+  return (
+    <form className={styles.sifarishForm} onSubmit={handleSubmit}>
+      <p className={styles.sifarishFormTitle}>Write Sifarish for {session.student_name}</p>
+      <p className={styles.sifarishFormHint}>
+        Write an honest, specific vouch. This will appear permanently on the student&apos;s profile.
+      </p>
+      <textarea
+        className={styles.sifarishTextarea}
+        placeholder={`e.g., "${session.student_name} came exceptionally prepared for our mock interview. They demonstrated strong problem-solving skills and incorporated feedback instantly. I'd confidently recommend them to any employer."`}
+        value={vouchText}
+        onChange={(e) => setVouchText(e.target.value)}
+        rows={4}
+        required
+      />
+      <div className={styles.sifarishMeta}>
+        <div className={styles.sifarishField}>
+          <label className={styles.sifarishLabel}>Skills Endorsed</label>
+          <input
+            type="text"
+            className={styles.sifarishSkillsInput}
+            placeholder="e.g., Communication, Problem Solving, React"
+            value={skillsInput}
+            onChange={(e) => setSkillsInput(e.target.value)}
+          />
+          <p className={styles.sifarishHint}>Comma-separated. Leave blank to skip.</p>
+        </div>
+        <label className={styles.sifarishToggle}>
+          <input
+            type="checkbox"
+            checked={isPublic}
+            onChange={(e) => setIsPublic(e.target.checked)}
+          />
+          Make this vouch public on student profile
+        </label>
+      </div>
+      {error && <p className={styles.sifarishError}>{error}</p>}
+      <div className={styles.sifarishActions}>
+        <button type="submit" className={styles.sifarishSubmitBtn} disabled={submitting || !vouchText.trim()}>
+          {submitting ? 'Publishing…' : 'Publish Sifarish'}
+        </button>
+      </div>
+    </form>
+  )
+}
+
 function SessionCard({ session, token, onUpdate }) {
   const [linkInput, setLinkInput] = useState(session.meeting_link || '')
   const [showLinkForm, setShowLinkForm] = useState(false)
+  const [showSifarishForm, setShowSifarishForm] = useState(false)
   const [busy, setBusy] = useState(false)
   const [cardError, setCardError] = useState('')
 
@@ -146,6 +226,34 @@ function SessionCard({ session, token, onUpdate }) {
       )}
 
       {session.status === 'completed' && <ReviewSection review={session.review} />}
+
+      {session.status === 'completed' && session.has_sifarish && (
+        <div className={styles.sifarishWritten}>
+          ✓ Sifarish written for this student.
+        </div>
+      )}
+
+      {session.status === 'completed' && !session.has_sifarish && !showSifarishForm && (
+        <div className={styles.sifarishPromptRow}>
+          <button
+            className={styles.sifarishBtn}
+            onClick={() => setShowSifarishForm(true)}
+          >
+            Write Sifarish
+          </button>
+        </div>
+      )}
+
+      {session.status === 'completed' && !session.has_sifarish && showSifarishForm && (
+        <SifarishForm
+          session={session}
+          token={token}
+          onWritten={(sessionId) => {
+            setShowSifarishForm(false)
+            onUpdate(sessionId, { has_sifarish: true })
+          }}
+        />
+      )}
 
       {cardError && <p className={styles.cardError}>{cardError}</p>}
 
@@ -267,6 +375,10 @@ export default function MentorSessionsPage() {
     if (result.status) {
       setSessions((prev) =>
         prev.map((s) => (s.id === sessionId ? { ...s, status: result.status } : s))
+      )
+    } else if (result.has_sifarish) {
+      setSessions((prev) =>
+        prev.map((s) => (s.id === sessionId ? { ...s, has_sifarish: true } : s))
       )
     } else {
       // meeting link update — refetch to get updated link
