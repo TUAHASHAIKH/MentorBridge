@@ -42,10 +42,21 @@ export async function GET(request) {
     }
   }
 
+  const sessionIds = rows.map((s) => s.id)
+  let reviewSet = new Set()
+  if (sessionIds.length > 0) {
+    const { data: reviews } = await supabase
+      .from('session_reviews')
+      .select('session_id')
+      .in('session_id', sessionIds)
+    reviewSet = new Set((reviews || []).map((r) => r.session_id))
+  }
+
   return NextResponse.json({
     sessions: rows.map((s) => ({
       ...s,
       mentor_name: mentorNameMap.get(s.mentor_id) || 'Unknown Mentor',
+      has_review: reviewSet.has(s.id),
     })),
   })
 }

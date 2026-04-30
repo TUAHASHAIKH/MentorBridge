@@ -236,6 +236,116 @@
   word-break: break-all;
 }
 
+/* ── Rating prompt row ── */
+.ratePromptRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rateBtn {
+  height: 30px;
+  padding: 0 14px;
+  border: 1px solid var(--mb-primary);
+  border-radius: var(--mb-radius-sm);
+  background: transparent;
+  color: var(--mb-primary-2);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.rateBtn:hover { background: var(--mb-primary); color: #fff; }
+
+/* ── Rating form ── */
+.ratingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-sm);
+  padding: 14px;
+  background: var(--mb-surface-2);
+}
+
+.ratingPrompt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mb-text);
+}
+
+.starPicker {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.starBtn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--mb-border);
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  transition: color 0.1s, transform 0.1s;
+}
+.starBtn:hover, .starBtn.starFilled { color: #f59e0b; }
+.starBtn:hover { transform: scale(1.15); }
+
+.ratingLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f59e0b;
+  margin-left: 6px;
+}
+
+.feedbackInput {
+  width: 100%;
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-sm);
+  background: var(--mb-surface);
+  color: var(--mb-text);
+  font-size: 13px;
+  font-family: inherit;
+  padding: 8px 10px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.feedbackInput:focus { outline: none; border-color: var(--mb-primary); }
+
+.ratingError {
+  font-size: 12px;
+  color: var(--mb-danger);
+  background: rgba(185,28,28,0.06);
+  border: 1px solid rgba(185,28,28,0.18);
+  border-radius: var(--mb-radius-sm);
+  padding: 7px 12px;
+}
+
+.ratingActions { display: flex; }
+
+.submitRatingBtn {
+  height: 32px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--mb-radius-sm);
+  background: var(--mb-primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+.submitRatingBtn:hover:not(:disabled) { filter: brightness(1.1); }
+.submitRatingBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
 @media (max-width: 640px) {
   .cardHead { flex-direction: column; }
+  .ratePromptRow { flex-direction: column; align-items: flex-start; }
 }

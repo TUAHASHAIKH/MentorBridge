@@ -70,6 +70,17 @@ export async function PATCH(request, context) {
       .update({ status: 'completed' })
       .eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+    const { data: mp } = await supabase
+      .from('mentor_profiles')
+      .select('total_sessions')
+      .eq('id', mentor.mentorProfile.id)
+      .single()
+    await supabase
+      .from('mentor_profiles')
+      .update({ total_sessions: (mp?.total_sessions || 0) + 1 })
+      .eq('id', mentor.mentorProfile.id)
+
     return NextResponse.json({ success: true, status: 'completed' })
   }
 
