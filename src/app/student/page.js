@@ -8,8 +8,8 @@ const upcomingFeatures = [
   {
     title: 'Browse Mentors',
     description: 'Find senior peers who offer mock interviews, CV reviews, career guidance, and more. Filter by session type.',
-    accent: 'Coming Soon',
-    href: '#',
+    accent: 'Live',
+    href: '/student/mentors',
   },
   {
     title: 'Book a Session',
@@ -55,17 +55,32 @@ export default function StudentDashboard() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2>Platform Features</h2>
-          <p>Everything below is being built — check back soon.</p>
+          <p>Browse Mentors is live. More features coming soon.</p>
         </div>
 
         <div className={styles.grid}>
-          {upcomingFeatures.map((feature) => (
-            <article key={feature.title} className={styles.card}>
-              <span className={styles.cardBadge}>{feature.accent}</span>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </article>
-          ))}
+          {upcomingFeatures.map((feature) => {
+            const isLive = feature.href !== '#'
+            const inner = (
+              <>
+                <span className={`${styles.cardBadge} ${isLive ? styles.cardBadgeLive : ''}`}>
+                  {feature.accent}
+                </span>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+                {isLive && <span className={styles.cardCta}>Browse now →</span>}
+              </>
+            )
+            return isLive ? (
+              <Link key={feature.title} href={feature.href} className={styles.card}>
+                {inner}
+              </Link>
+            ) : (
+              <article key={feature.title} className={styles.card}>
+                {inner}
+              </article>
+            )
+          })}
         </div>
       </section>
 

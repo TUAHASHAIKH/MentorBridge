@@ -39,7 +39,6 @@ export default function LoginForm() {
     }
     const profile = await res.json()
     if (profile.role === 'mentor') router.replace('/mentor')
-    else if (profile.role === 'admin') router.replace('/admin')
     else router.replace('/student')
   }
 

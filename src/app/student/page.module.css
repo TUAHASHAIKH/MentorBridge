@@ -136,6 +136,19 @@
   padding: 3px 10px;
 }
 
+.cardBadgeLive {
+  background: rgba(22, 101, 52, 0.09);
+  color: var(--mb-success);
+  border: 1px solid rgba(22, 101, 52, 0.2);
+}
+
+.cardCta {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mb-primary-2);
+  margin-top: auto;
+}
+
 .card h3 {
   font-size: 15px;
   font-weight: 600;
