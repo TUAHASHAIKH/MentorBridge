@@ -11,7 +11,7 @@ const navLinks = [
   { href: '/student', label: 'Dashboard', exact: true },
   { href: '/student/apply-mentor', label: 'Apply as Mentor' },
   { href: '/student/mentors', label: 'Browse Mentors' },
-  { href: '/student/sessions', label: 'My Sessions', soon: true },
+  { href: '/student/sessions', label: 'My Sessions' },
   { href: '/student/action-items', label: 'Action Items', soon: true },
   { href: '/student/profile', label: 'My Profile', soon: true },
 ]

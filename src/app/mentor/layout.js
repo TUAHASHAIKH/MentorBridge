@@ -11,7 +11,7 @@ const navLinks = [
   { href: '/mentor', label: 'Dashboard', exact: true },
   { href: '/mentor/profile', label: 'My Profile' },
   { href: '/mentor/requests', label: 'Session Requests', soon: true },
-  { href: '/mentor/sessions', label: 'My Sessions', soon: true },
+  { href: '/mentor/sessions', label: 'My Sessions' },
   { href: '/mentor/sifarish', label: 'Write Sifarish', soon: true },
 ]
 
