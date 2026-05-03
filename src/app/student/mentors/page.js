@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -279,9 +280,14 @@ function MentorCard({ mentor, onBook }) {
             {mentor.total_sessions || 0} session{mentor.total_sessions !== 1 ? 's' : ''}
           </span>
         </div>
-        <button className={styles.bookBtn} onClick={() => onBook(mentor)}>
-          Book Session
-        </button>
+        <div className={styles.cardActions}>
+          <Link className={styles.profileBtn} href={`/student/mentors/${mentor.id}`}>
+            View Profile
+          </Link>
+          <button className={styles.bookBtn} onClick={() => onBook(mentor)}>
+            Book Session
+          </button>
+        </div>
       </div>
     </article>
   )

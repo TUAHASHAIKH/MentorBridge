@@ -249,9 +249,9 @@
 /* ── Card footer ── */
 .cardFooter {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 12px;
   padding-top: 4px;
   margin-top: auto;
 }
@@ -259,12 +259,49 @@
 .footerStats {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.profileBtn {
+  height: 32px;
+  min-width: 0;
+  flex: 1;
+  padding: 0 10px;
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-sm);
+  background: var(--mb-surface);
+  color: var(--mb-primary);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.profileBtn:hover {
+  border-color: var(--mb-primary);
+  background: rgba(0, 55, 65, 0.05);
 }
 
 .bookBtn {
   height: 32px;
-  padding: 0 16px;
+  min-width: 0;
+  flex: 1;
+  padding: 0 10px;
   border: 0;
   border-radius: var(--mb-radius-sm);
   background: var(--mb-primary);
@@ -310,6 +347,7 @@
 .sessions {
   font-size: 12px;
   color: var(--mb-text-muted);
+  text-align: right;
 }
 
 /* ── Booking modal ── */

@@ -1,0 +1,488 @@
+.loadingWrap {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--mb-border);
+  border-top-color: var(--mb-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 1060px;
+}
+
+.backLink {
+  width: fit-content;
+  color: var(--mb-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.backLink:hover {
+  color: var(--mb-primary);
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 22px;
+  align-items: start;
+}
+
+.mainColumn,
+.sideColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero,
+.section,
+.bookingPanel {
+  background: var(--mb-surface);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-md);
+  box-shadow: var(--mb-shadow-soft);
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--mb-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.badge {
+  width: fit-content;
+  background: rgba(0, 55, 65, 0.07);
+  color: var(--mb-primary-2);
+  border: 1px solid rgba(0, 55, 65, 0.15);
+  border-radius: 999px;
+  padding: 4px 11px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.hero h1 {
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--mb-text);
+}
+
+.meta,
+.bodyText,
+.section p,
+.privacyNote {
+  color: var(--mb-text-muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.section {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--mb-text);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sectionHead span {
+  color: var(--mb-text-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tagRow,
+.skillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag,
+.skillRow span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mb-primary-2);
+  background: rgba(0, 55, 65, 0.06);
+  border: 1px solid rgba(0, 55, 65, 0.12);
+  border-radius: 999px;
+  padding: 5px 10px;
+}
+
+.sessionList,
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sessionItem,
+.quoteCard {
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-sm);
+  background: var(--mb-surface-2);
+}
+
+.sessionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+}
+
+.sessionItem h3 {
+  font-size: 14px;
+  color: var(--mb-text);
+}
+
+.approvedChip {
+  color: var(--mb-success);
+  background: rgba(22, 101, 52, 0.08);
+  border: 1px solid rgba(22, 101, 52, 0.2);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.quoteCard {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quoteHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.quoteHead strong {
+  color: var(--mb-primary);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.quoteHead span {
+  color: var(--mb-text-muted);
+  font-size: 12px;
+}
+
+.bookingPanel {
+  position: sticky;
+  top: 72px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-sm);
+  overflow: hidden;
+}
+
+.statGrid div {
+  min-width: 0;
+  padding: 12px 8px;
+  background: var(--mb-surface-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
+}
+
+.statGrid div + div {
+  border-left: 1px solid var(--mb-border);
+}
+
+.statGrid strong {
+  color: var(--mb-primary);
+  font-size: 14px;
+}
+
+.statGrid span {
+  color: var(--mb-text-muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  height: 40px;
+  border-radius: var(--mb-radius-sm);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.primaryBtn {
+  width: 100%;
+  border: 0;
+  background: var(--mb-primary);
+  color: #fff;
+}
+
+.primaryBtn:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.secondaryBtn {
+  border: 1px solid var(--mb-border);
+  background: transparent;
+  color: var(--mb-text-muted);
+  padding: 0 16px;
+}
+
+.error,
+.modalError {
+  color: var(--mb-danger);
+  background: rgba(185, 28, 28, 0.07);
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  border-radius: var(--mb-radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal {
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--mb-surface);
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-lg);
+  box-shadow: var(--mb-shadow);
+}
+
+.modalHeader {
+  padding: 24px 28px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modalHeader h2,
+.successModal h2 {
+  color: var(--mb-text);
+  font-size: 22px;
+}
+
+.modalHeader p {
+  color: var(--mb-text-muted);
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.modalBadge {
+  width: fit-content;
+  color: var(--mb-accent);
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.closeBtn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--mb-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--mb-text-muted);
+  cursor: pointer;
+}
+
+.modalForm {
+  padding: 20px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modalRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  color: var(--mb-text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.field select,
+.field input,
+.field textarea {
+  border: 1px solid var(--mb-border);
+  border-radius: var(--mb-radius-sm);
+  background: var(--mb-surface-2);
+  color: var(--mb-text);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 9px 12px;
+}
+
+.field select,
+.field input {
+  height: 40px;
+}
+
+.field textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.modalActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modalActions .primaryBtn {
+  width: auto;
+  padding: 0 22px;
+}
+
+.successModal {
+  max-width: 420px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.successModal p {
+  color: var(--mb-text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bookingPanel {
+    position: static;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    align-items: flex-start;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .modalRow,
+  .statGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statGrid div + div {
+    border-left: 0;
+    border-top: 1px solid var(--mb-border);
+  }
+
+  .modalHeader,
+  .modalForm {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

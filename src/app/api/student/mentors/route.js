@@ -17,7 +17,7 @@ export async function GET(request) {
       id, user_id, bio, department, year_of_study,
       avg_rating, total_sessions, expertise_areas,
       mentor_session_types (
-        id, session_type, duration_minutes,
+        id, session_type, duration_minutes, is_active,
         mentor_approved_session_types ( is_approved )
       )
     `)
@@ -48,7 +48,7 @@ export async function GET(request) {
       total_sessions: m.total_sessions,
       expertise_areas: m.expertise_areas || [],
       session_types: (m.mentor_session_types || []).filter(
-        (st) => st.mentor_approved_session_types?.[0]?.is_approved === true
+        (st) => st.is_active !== false && st.mentor_approved_session_types?.[0]?.is_approved === true
       ),
     }))
     .filter((m) => m.session_types.length > 0)
